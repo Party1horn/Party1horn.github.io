@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RWTH</title>
+
+    <style>
+        body {
+            background-color: rgb(1, 4, 14);
+            margin: 0 0;
+            padding: 0 0;
+            overflow: hidden;
+        }
+        .animation {
+            position:absolute;
+            top: 0;
+            background-image: linear-gradient(90deg, blue, red, blue, red);
+            width: 300vw;
+            height: 100vh;
+            animation: colorswitch 3s linear infinite;
+        }
+        @keyframes colorswitch {
+            0% { left: 0; }
+            100% { left: -200vw;}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animation"></div>
+    <h1>RWTH</h1>
+</body>
+
+</html>
