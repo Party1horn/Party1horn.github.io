@@ -27,12 +27,12 @@
         }
 
         /*Menüliste linksbündig*/
-        li {
+        .menueliste {
             float: left;
         }
 
         /*Elemente der Menüliste*/
-        li a, .dropbtn {
+        .menueliste a, .dropbtn {
             display: inline-block;
             color: rgb(247, 247, 247);
             text-align: center;
@@ -41,12 +41,12 @@
         }
 
         /*Farbe, wenn auf Feld gedrückt wird*/
-        li a:hover, .dropdown:hover .dropbtn {
+        .menueliste a:hover, .dropdown:hover .dropbtn {
             background-color: rgb(252, 5, 5);
         }
 
         /*Verhlten bei Berührung*/
-        li.dropdown {
+        .menueliste.dropdown {
             display: inline-block;
         }
 
@@ -127,7 +127,7 @@
 <body>
 
     <ul>s
-        <li><a href="https://www.google.com/">Home</a></li>
+        <li class="menueliste"><a href="https://www.google.com/">Home</a></li>
 
         <li class="dropdown">
             <a href="" class="dropbtn">News</a>
@@ -165,7 +165,7 @@
     <h1>News</h1>
     <div style="display:flex">
         <ul>
-            <li>
+            <li class="menueliste">
                 <span><a href="#area-2"> Teil 1</a></span> 
                 <span><a href="#area-3"> Teil 2</a></span>
                 <span><a href="#area-4"> Teil 3</a></span>
