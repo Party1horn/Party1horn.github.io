@@ -120,19 +120,8 @@
             font-size: 20pt;
         }
 
-        .iframe-container {
-            overflow: hidden;
-            // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
-            padding-top: 56.25%;
-            position: relative;
-        }
- 
-        .iframe-container iframe {
-            border: 0;
+        .h_iframe {
             height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
             width: 100%;
         }
     </style>
@@ -178,7 +167,7 @@
 
 
     <h1>Börse</h1>
-    <div class="iframe-container">
+    <div class="h_iframe">
             <iframe src="https://www.n-tv.de/boersenkurse/indizes/dax-8987458" allowfullscreen></iframe>
     </div>
 
