@@ -120,6 +120,21 @@
             font-size: 20pt;
         }
 
+        .iframe-container {
+            overflow: hidden;
+            // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
+            padding-top: 56.25%;
+            position: relative;
+        }
+ 
+        .iframe-container iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -162,6 +177,11 @@
     <img src="https://memesbams.com/de/wp-content/uploads/2018/06/Lustige-Bilder-zum-Geburtstag-kostenlos-2.jpg" class="picture"> 
 
 
+    <h1>Börse</h1>
+    <div class="iframe-container">
+            <iframe src="https://www.n-tv.de/boersenkurse/indizes/dax-8987458" allowfullscreen></iframe>
+    </div>
+
     <h1>News</h1>
     <div style="display:flex">
         <ul>
@@ -197,10 +217,6 @@
 
         <div class="scroller" id="area-5">
                 <img src="Schiff.PNG"  class="bild">
-        </div>
-
-        <div class="scroller" id="area-6">
-                <iframe max-width=100% height=auto src="https://www.n-tv.de/boersenkurse/indizes/dax-8987458">
         </div>
     </div>
 </body>
