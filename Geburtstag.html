@@ -119,6 +119,30 @@
         .text {
             font-size: 20pt;
         }
+
+
+        .embed-container {
+            position: relative; 
+            padding-bottom: 56.25%; /* ratio 16x9 */
+            height: 0; 
+            overflow: hidden; 
+            width: 100%;
+            height: auto;
+        }
+
+        .embed-container iframe {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+        
+        }
+        
+        /* ratio 4x3 */
+        .embed-container.ratio4x3 {
+            padding-bottom: 75%;
+        }
     </style>
 </head>
 
@@ -161,8 +185,8 @@
 
 
     <h1>Börse</h1>
-    <div class="smoth">
-            <iframe src="https://www.n-tv.de/boersenkurse/indizes/dax-8987458" allowfullscreen></iframe>
+    <div class="embed-container">
+        <iframe width="560" height="315" src="https://www.n-tv.de/boersenkurse/indizes/dax-8987458" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <h1>News</h1>
