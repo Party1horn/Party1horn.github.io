@@ -44,7 +44,7 @@
             canvas.width = parseInt(paintStyle.getPropertyValue("width"));
             canvas.height = parseInt(paintStyle.getPropertyValue("height"));
 
-            var mouse = {x: 0; y: 0};
+            var mouse = {x: 0, y: 0};
 
             canvas.addEventListener('mousemove', function(e) {
                 mouse.x = e.pageX - this.offsetLeft;
