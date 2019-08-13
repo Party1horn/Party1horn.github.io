@@ -31,8 +31,8 @@ window.onload = function (){
     canvas.addEventListener('touchmove', (e)=>{
         console.log("touchmove");
         let t = e.touches[0];
-        mouse.x = t.pageX - e.target.getElementBoundingRect().left;
-        mouse.y = t.pageY - e.target.getElementBoundingRect().top;
+        mouse.x = t.pageX - e.target.getBoundingClientRect().left;
+        mouse.y = t.pageY - e.target.getBoundingClientRect().top;
     }, {passive: false});
 
     ctx.lineWidth = 3;
@@ -48,8 +48,8 @@ window.onload = function (){
 
     canvas.addEventListener('touchstart', (e)=>{
         let t = e.touches[0];
-        mouse.x = t.pageX - e.target.getElementBoundingRect().left;
-        mouse.y = t.pageY - e.target.getElementBoundingRect().top;
+        mouse.x = t.pageX - e.target.getBoundingClientRect().left;
+        mouse.y = t.pageY - e.target.getBoundingClientRect().top;
 
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
