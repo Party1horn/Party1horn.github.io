@@ -15,14 +15,10 @@ window.onload = function (){
     });
 
     inputColor.onchange = function(e) {
-        console.log("Test1");
         ctx.strokeStyle = inputColor.value;
     };
 
-    console.log(inputColor);
-
-    inputSize.onchange = function(e) {
-        console.log("Test2");
+    inputSize.oninput = function(e) {
         ctx.lineWidth = inputSize.value;
     };
 
@@ -34,10 +30,10 @@ window.onload = function (){
     }, false);
 
     canvas.addEventListener('touchmove', (e)=>{
-        console.log("touchmove");
         let t = e.touches[0];
         mouse.x = t.pageX - e.target.getBoundingClientRect().left;
         mouse.y = t.pageY - e.target.getBoundingClientRect().top;
+        ctx.lineWidth = t.force * 10;
     }, {passive: false});
 
     ctx.lineWidth = inputSize.value;
