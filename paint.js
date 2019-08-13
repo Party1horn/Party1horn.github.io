@@ -38,7 +38,7 @@ window.onload = function (){
             mouse.x = t.pageX - e.target.offsetLeft;
             mouse.y = t.pageY - e.target.offsetTop;
         }
-    });
+    }, {passive: false});
 
     ctx.lineWidth = 3;
     ctx.lineJoin = 'round';
