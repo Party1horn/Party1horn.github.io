@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paint</title>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="toolbar">
+            <button id="btnSave">Speichern</button>
+            <button id="btnClear">Löschen</button>
+            <input id="inputColor" type="color"/>
+            <input id="inputSize" min="0" max="100" value="10" type="range"/>
+            <input id="outputSize" type="number"/>
+            <div class="version">v0.0.1</div>
+        </div>
+        <div class="content">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+</body>
+</html>
