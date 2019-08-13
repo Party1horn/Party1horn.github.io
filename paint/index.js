@@ -4,6 +4,13 @@ let canvas, ctx, btnSave, btnClear, inputColor, inputSize, outputSize;
 
 let mouse = {x: 0, y: 0, drawing: false};
 
+const view = {
+    zoom: 1
+}
+
+let doc = {paths: []};
+let activePath = [];
+
 function init() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
@@ -34,7 +41,7 @@ function init() {
     // Ruft recalcSize einmal auf, sobald Rendering bereit
     requestAnimationFrame(recalcSize);
 
-    btnClear.onclick = clearCanvas;
+    btnClear.onclick = clearDocument;
     
     function recalcSize() {
         let r = canvas.getBoundingClientRect();
@@ -62,19 +69,48 @@ function init() {
 
     function updateMouse() {
         if(mouse.drawing) {
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
+            activePath.push([mouse.x,mouse.y]);
         }
     }
 
-    function clearCanvas() {
-        ctx.clearRect(0,0,canvas.width, canvas.height);
+    function clearDocument() {
+        doc.paths = [];
     }
 
-    canvas.onmousedown = (e) => { mouse.drawing = true; ctx.beginPath(); };
-    window.onmouseup = () => { mouse.drawing = false; };
-    window.addEventListener("touchstart", (e) => { e.preventDefault(); updateTouchPos(e); ctx.moveTo(mouse.x, mouse.y); ctx.beginPath(); mouse.drawing = true; }, {passive: false});
-    window.addEventListener("touchend", () => { mouse.drawing = false; }); 
+    canvas.onmousedown = (e) => { mouse.drawing = true; };
+    window.onmouseup = () => { mouse.drawing = false; strokeEnd(); };
+    canvas.addEventListener("touchstart", (e) => { e.preventDefault(); updateTouchPos(e); ctx.moveTo(mouse.x, mouse.y); mouse.drawing = true; }, {passive: false});
+    window.addEventListener("touchend", () => { mouse.drawing = false; strokeEnd(); }); 
+
+    function draw(){
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        for(let p of doc.paths) drawPath(p[0],p[1],p[2]);
+        if(activePath.length > 1) drawPath(activePath, inputSize.value, inputColor.value);
+    }
+
+    function drawLoop(){
+        draw();
+        requestAnimationFrame(drawLoop);
+    }
+    requestAnimationFrame(drawLoop);
+
+    function drawPath(path,lw,color){
+        ctx.lineWidth = lw; 
+        ctx.strokeStyle = color;
+        ctx.lineJoin = 'round'; 
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(path[0][0]*view.zoom,path[0][1]*view.zoom);
+        for(let p of path) ctx.lineTo(p[0] * view.zoom,p[1] * view.zoom);
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function strokeEnd(){
+        if(activePath.length <= 1) return;
+        doc.paths.push([activePath,inputSize.value,inputColor.value]);
+        activePath = [];
+    }
 
     function save(){
         let url = canvas.toDataURL("image/png");
