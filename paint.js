@@ -33,7 +33,7 @@ window.onload = function (){
         let t = e.touches[0];
         mouse.x = t.pageX - e.target.getBoundingClientRect().left;
         mouse.y = t.pageY - e.target.getBoundingClientRect().top;
-        ctx.lineWidth = t.force * 10;
+        //ctx.lineWidth = t.force * 10;
     }, {passive: false});
 
     ctx.lineWidth = inputSize.value;
