@@ -29,8 +29,15 @@ window.onload = function (){
     }, false);
 
     canvas.addEventListener('touchmove', (e)=>{
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
+        console.log("touchmove");
+        if(e.pageX) {
+            mouse.x = e.pageX - this.offsetLeft;
+            mouse.y = e.pageY - this.offsetTop;
+        } else {
+            let t = e.touches[0];
+            mouse.x = t.pageX - e.target.offsetLeft;
+            mouse.y = t.pageY - e.target.offsetTop;
+        }
     });
 
     ctx.lineWidth = 3;
@@ -45,9 +52,14 @@ window.onload = function (){
     }, false);
 
     canvas.addEventListener('touchstart', (e)=>{
+        let t = e.touches[0];
+        mouse.x = t.pageX - e.target.offsetLeft;
+        mouse.y = t.pageY - e.target.offsetTop;
+
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
-        canvas.addEventListener('mousemove', onPaint, false);
+        canvas.addEventListener('touchmove', onPaint, false);
+        e.preventDefault();
     });
 
     canvas.addEventListener('mouseup', function() {
@@ -55,7 +67,7 @@ window.onload = function (){
     }, false);
 
     canvas.addEventListener('touchend', (e)=>{
-        canvas.removeEventListener('mousemove', onPaint, false);
+        canvas.removeEventListener('touchmove', onPaint, false);
     });
 
     var onPaint = function() {
