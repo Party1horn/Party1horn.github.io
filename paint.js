@@ -30,14 +30,9 @@ window.onload = function (){
 
     canvas.addEventListener('touchmove', (e)=>{
         console.log("touchmove");
-        if(e.pageX) {
-            mouse.x = e.pageX - this.offsetLeft;
-            mouse.y = e.pageY - this.offsetTop;
-        } else {
-            let t = e.touches[0];
-            mouse.x = t.pageX - e.target.offsetLeft;
-            mouse.y = t.pageY - e.target.offsetTop;
-        }
+        let t = e.touches[0];
+        mouse.x = t.pageX - e.target.getElementBoundingRect().left;
+        mouse.y = t.pageY - e.target.getElementBoundingRect().top;
     }, {passive: false});
 
     ctx.lineWidth = 3;
