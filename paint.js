@@ -48,8 +48,8 @@ window.onload = function (){
 
     canvas.addEventListener('touchstart', (e)=>{
         let t = e.touches[0];
-        mouse.x = t.pageX - e.target.offsetLeft;
-        mouse.y = t.pageY - e.target.offsetTop;
+        mouse.x = t.pageX - e.target.getElementBoundingRect().left;
+        mouse.y = t.pageY - e.target.getElementBoundingRect().top;
 
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
