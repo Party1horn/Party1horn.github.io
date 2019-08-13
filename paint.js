@@ -8,6 +8,11 @@ window.onload = function (){
 
     let inputColor = document.getElementById("inputColor");
     let inputSize = document.getElementById("inputSize");
+    let inputClear = document.getElementById("inputClear");
+
+    inputClear.addEventListener("click", (e)=>{
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+    });
 
     inputColor.onchange = function(e) {
         console.log("Test1");
@@ -35,10 +40,10 @@ window.onload = function (){
         mouse.y = t.pageY - e.target.getBoundingClientRect().top;
     }, {passive: false});
 
-    ctx.lineWidth = 3;
+    ctx.lineWidth = inputSize.value;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
-    ctx.strokeStyle = '#FF0000';
+    ctx.strokeStyle = inputColor.value;
 
     canvas.addEventListener('mousedown', function(e) {
         ctx.beginPath();
