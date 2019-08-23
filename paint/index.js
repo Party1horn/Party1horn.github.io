@@ -1,6 +1,6 @@
 window.onload = init;
 
-let canvas, ctx, btnSave, btnClear, inputColor, inputSize, outputSize;
+let canvas, ctx, btnSave, btnClear, inputColor, inputBGColor, inputSize, outputSize;
 
 let mouse = {x: 0, y: 0, drawing: false};
 
@@ -19,6 +19,7 @@ function init() {
     inputSize = document.getElementById("inputSize");
     outputSize = document.getElementById("outputSize");
     inputColor = document.getElementById("inputColor");
+    inputBGColor = document.getElementById("inputBGColor");
 
     window.onresize = recalcSize;
 
@@ -37,11 +38,13 @@ function init() {
         ctx.lineCap = 'round';
     };
     inputColor.onchange = ()=>{ ctx.strokeStyle = inputColor.value; };
+    inputBGColor.onchange = ()=>{ document.body.style.backgroundColor = inputBGColor.value; };
 
     // Ruft recalcSize einmal auf, sobald Rendering bereit
     requestAnimationFrame(recalcSize);
 
     btnClear.onclick = clearDocument;
+
     
     function recalcSize() {
         let r = canvas.getBoundingClientRect();
