@@ -1,5 +1,8 @@
+* {
+    --toolbar-height: 3em;
+}
+
 body {
-    position: fixed;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
@@ -8,6 +11,7 @@ body {
 }
 
 .wrapper {
+    position: fixed;
     display: flex;
     width: 100%;
     height: 100vh;
@@ -16,8 +20,34 @@ body {
 
 .toolbar {
     position: relative;
-    height: 2em;
-    background-color: rgb(135, 171, 180);
+    height: var(--toolbar-height);
+    background-color: #25a;
+}
+
+.toolbar .button {
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #36b;
+    width: var(--toolbar-height);
+    height: var(--toolbar-height);
+    padding: 3px 10px;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    cursor: pointer;
+}
+
+.toolbar .button:hover {
+    background-color: #47c;
+}
+
+.toolbar .button.save {
+    background-image: url('img/save.svg');
+}
+
+.toolbar .button.clear {
+    background-image: url('img/clear.svg');
 }
 
 .toolbar .version {
@@ -31,9 +61,10 @@ body {
 
 .toolbar input, .toolbar button {
     top: 0;
-    height: 2em;
+    height: var(--toolbar-height);
     vertical-align: top;
     margin: 2.5px;
+    outline-style: none;
 }
 
 #outputSize {

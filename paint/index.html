@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable = no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="apple-touch-icon" href="img/appicon.png"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,13 +16,13 @@
 <body>
     <div class="wrapper">
         <div class="toolbar">
-            <button id="btnSave">Speichern</button>
-            <button id="btnClear">Löschen</button>
+            <div id="btnSave" class="button save"></div>
+            <div id="btnClear" class="button clear"></div>
             <input id="inputColor" type="color"/>
             <input id="inputBGColor" type="color"/>
             <input id="inputSize" min="0" max="100" value="10" type="range"/>
-            <input id="outputSize" type="number"/>
-            <div class="version">v0.0.3</div>
+            <input id="outputSize" type="text"/>
+            <div class="version">v0.0.4</div>
         </div>
         <div class="content">
             <canvas id="canvas"></canvas>
