@@ -5,7 +5,8 @@ let canvas, ctx, btnSave, btnClear, inputColor, inputBGColor, inputSize, outputS
 let mouse = {x: 0, y: 0, drawing: false};
 
 const view = {
-    zoom: 1
+    zoom: 1,
+    cursorSize: 10
 }
 
 let doc = {paths: []};
@@ -16,29 +17,34 @@ function init() {
     ctx = canvas.getContext("2d");
     btnSave = document.getElementById("btnSave");
     btnClear = document.getElementById("btnClear");
-    inputSize = document.getElementById("inputSize");
+    //inputSize = document.getElementById("inputSize");
     outputSize = document.getElementById("outputSize");
     inputColor = document.getElementById("inputColor");
     inputBGColor = document.getElementById("inputBGColor");
 
+    outputSize.value = view.cursorSize;
+    inputBGColor.value = "#ffffff";
+
     window.onresize = recalcSize;
+    window.onorientationchange = recalcSize;
 
     btnSave.onclick = save;
 
-    inputSize.oninput = ()=>{ 
+    /*inputSize.oninput = ()=>{ 
         ctx.lineWidth = inputSize.value; 
         ctx.lineJoin = 'round'; 
         ctx.lineCap = 'round';
         outputSize.value = inputSize.value;
-    };
+    };*/
     outputSize.onchange = ()=>{
-        inputSize.value = outputSize.value;
-        ctx.lineWidth = inputSize.value; 
+        //inputSize.value = outputSize.value;
+        view.cursorSize = Number.parseFloat(outputSize.value);
+        ctx.lineWidth = view.cursorSize; 
         ctx.lineJoin = 'round'; 
         ctx.lineCap = 'round';
     };
     inputColor.onchange = ()=>{ ctx.strokeStyle = inputColor.value; };
-    inputBGColor.onchange = ()=>{ document.body.style.backgroundColor = inputBGColor.value; };
+    inputBGColor.onchange = ()=>{ canvas.style.backgroundColor = inputBGColor.value; };
 
     // Ruft recalcSize einmal auf, sobald Rendering bereit
     requestAnimationFrame(recalcSize);
@@ -51,7 +57,7 @@ function init() {
         canvas.width = r.width;
         canvas.height = r.height;
         ctx.strokeStyle = inputColor.value;
-        ctx.lineWidth = inputSize.value;
+        ctx.lineWidth = view.cursorSize;
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
     }
@@ -88,7 +94,7 @@ function init() {
     function draw(){
         ctx.clearRect(0,0,canvas.width, canvas.height);
         for(let p of doc.paths) drawPath(p[0],p[1],p[2]);
-        if(activePath.length > 1) drawPath(activePath, inputSize.value, inputColor.value);
+        if(activePath.length > 1) drawPath(activePath, view.cursorSize, inputColor.value);
     }
 
     function drawLoop(){
@@ -111,7 +117,7 @@ function init() {
 
     function strokeEnd(){
         if(activePath.length <= 1) return;
-        doc.paths.push([activePath,inputSize.value,inputColor.value]);
+        doc.paths.push([activePath,view.cursorSize,inputColor.value]);
         activePath = [];
     }
 

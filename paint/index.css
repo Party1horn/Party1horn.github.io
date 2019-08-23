@@ -60,11 +60,18 @@ body {
 }
 
 .toolbar input, .toolbar button {
+    box-sizing: border-box;
     top: 0;
     height: var(--toolbar-height);
     vertical-align: top;
-    margin: 2.5px;
+    margin: 4px;
     outline-style: none;
+    padding: 0;
+}
+
+.toolbar input[type=text] {
+    padding: 5px 10px;
+    text-align: center;
 }
 
 #outputSize {
