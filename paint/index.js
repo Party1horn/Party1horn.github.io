@@ -9,7 +9,7 @@ const view = {
     cursorSize: 10
 }
 
-let doc = {paths: []};
+let doc = {paths: [],backgroundColor:"#ffffff"};
 let verlauf = [];
 let activePath = [];
 
@@ -50,7 +50,7 @@ function init() {
         ctx.lineCap = 'round';
     };
     inputColor.onchange = ()=>{ ctx.strokeStyle = inputColor.value; };
-    inputBGColor.onchange = ()=>{ canvas.style.backgroundColor = inputBGColor.value; };
+    inputBGColor.onchange = ()=>{ setBackgroundColor(inputBGColor.value); };
 
     // Ruft recalcSize einmal auf, sobald Rendering bereit
     requestAnimationFrame(recalcSize);
@@ -134,11 +134,26 @@ function init() {
 
     function undo(){
         let ac = verlauf.pop();
+        if(!ac) return;
         switch(ac.action) {
             case "addPath":
                 doc.paths.splice(ac.pathid, 1);
                 break;
+
+            case "changeBackground":
+                setBackgroundColor(ac.prevvalue, true);
+                break;
         }
+    }
+
+    function setBackgroundColor(color, isUndo){
+        if(!isUndo) verlauf.push({
+            action: "changeBackground",
+            prevvalue: doc.backgroundColor,
+            value: color
+        });
+        doc.backgroundColor = color;
+        canvas.style.backgroundColor = color;
     }
 
     function save(){
