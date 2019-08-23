@@ -10,23 +10,29 @@ const view = {
 }
 
 let doc = {paths: []};
+let verlauf = [];
 let activePath = [];
 
 function init() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     btnSave = document.getElementById("btnSave");
+    btnUndo = document.getElementById("btnUndo");
     btnClear = document.getElementById("btnClear");
     //inputSize = document.getElementById("inputSize");
     outputSize = document.getElementById("outputSize");
     inputColor = document.getElementById("inputColor");
     inputBGColor = document.getElementById("inputBGColor");
 
+    btnUndo.addEventListener("click", (e)=>{
+        undo();
+    });
+
     outputSize.value = view.cursorSize;
     inputBGColor.value = "#ffffff";
 
     window.onresize = recalcSize;
-    window.onorientationchange = recalcSize;
+    window.onorientationchange = ()=>{requestAnimationFrame(recalcSize);};
 
     btnSave.onclick = save;
 
@@ -84,6 +90,7 @@ function init() {
 
     function clearDocument() {
         doc.paths = [];
+        verlauf = [];
     }
 
     canvas.onmousedown = (e) => { mouse.drawing = true; };
@@ -117,8 +124,21 @@ function init() {
 
     function strokeEnd(){
         if(activePath.length <= 1) return;
-        doc.paths.push([activePath,view.cursorSize,inputColor.value]);
+        let id = doc.paths.push([activePath,view.cursorSize,inputColor.value]) - 1;
+        verlauf.push({
+            action: "addPath",
+            pathid: id
+        });
         activePath = [];
+    }
+
+    function undo(){
+        let ac = verlauf.pop();
+        switch(ac.action) {
+            case "addPath":
+                doc.paths.splice(ac.pathid, 1);
+                break;
+        }
     }
 
     function save(){
