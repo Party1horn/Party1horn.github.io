@@ -222,7 +222,7 @@ function init() {
     });
 
     outputSize.value = View.cursorSize;
-    inputBGColor.value = "#ffffff";
+    inputBGColor.value = canvas.style.backgroundColor = "#ffffff";
 
     window.onresize = recalcSize;
     btnSave.onclick = save;
