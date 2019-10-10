@@ -14,7 +14,7 @@ const View = {
     cursorSize: 10,
 
     performZoom(pXm, pYm, newZoom){
-        if(newZoom <= 0) newZoom = 0.001;
+        if(newZoom <= .2) newZoom = 0.2;
         let pXv = pXm / View.zoom - View.viewX;
         let pYv = pYm / View.zoom - View.viewY;
 
@@ -76,7 +76,7 @@ const View = {
     },
 
     drawPath(path,lw,color){
-        ctx.lineWidth = lw; 
+        ctx.lineWidth = lw * View.zoom; 
         ctx.strokeStyle = color;
         ctx.lineJoin = 'round'; 
         ctx.lineCap = 'round';
@@ -132,6 +132,15 @@ const TouchManager = {
                     let cX = (t1.pageX + t2.pageX) / 2;
                     let cY = (t1.pageY + t2.pageY) / 2;
                     View.performZoom(cX,cY,View.zoom + (diff * 0.00001) * View.zoom);
+                }
+            } else if(e.touches.length == 3){
+                let nt = e.touches[0];
+                let ot = TouchManager.getPrevTouch(nt);
+                if(ot) {
+                    let diffX = nt.pageX - ot.pageX;
+                    let diffY = nt.pageY - ot.pageY;
+                    View.viewX += diffX / View.zoom;
+                    View.viewY += diffY / View.zoom;
                 }
             }
         } else {
