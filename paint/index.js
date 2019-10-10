@@ -133,12 +133,10 @@ const TouchManager = {
                     let cY = (t1.pageY + t2.pageY) / 2;
                     View.performZoom(cX,cY,View.zoom + (diff * 0.00001) * View.zoom);
                 }
-            } else if(e.touches.length == 3){
-                let nt = e.touches[0];
-                let ot = TouchManager.getPrevTouch(nt);
-                if(ot) {
-                    let diffX = nt.pageX - ot.pageX;
-                    let diffY = nt.pageY - ot.pageY;
+
+                if(d1) {
+                    let diffX = t1.pageX - d1.pageX;
+                    let diffY = t1.pageY - d1.pageY;
                     View.viewX += diffX / View.zoom;
                     View.viewY += diffY / View.zoom;
                 }
