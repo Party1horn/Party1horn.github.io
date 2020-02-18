@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {  
+    background: url(https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+h1 {
+    animation: moveright 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    color: black;
+}
+
+
+@keyframes moveright {
+  0% {
+    transform: translate(0);
+  }
+
+  100% {
+    transform: translate(7em);
+  }
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0);
+      }
+    
+      100% {
+        transform: translate(100%);
+      }
+}
+
+
+
+h2 {
+    animation: move 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    color: white;
+}
+
+.box {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    height: 500px;
+    width: 500px;
+    background-color: rgba(230, 214, 214, 0.8);
+    border-color: rgb(0,0,0);
+    border-width: 5px;
+    border-style: solid;
+    font-size: 20px;
+    /*overflow: hidden;
+    padding: 0 0;
+    margin: 0 0;*/
+}
+
+.box2 {
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  height: 400px;
+  width: 400px;
+  background-color: rgba(230, 214, 214, 0.8);
+  border-color: rgb(0,0,0);
+  border-width: 5px;
+  border-style: solid;
+  font-size: 20px;
+  /*overflow: hidden;
+  padding: 0 0;
+  margin: 0 0;*/
+}
+
+.block {
+    position: absolute;
+    bottom: 0em;
+    width: 100vw;
+    height: 55px;
+    background-color: black;

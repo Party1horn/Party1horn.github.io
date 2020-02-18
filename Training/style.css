@@ -1,0 +1,54 @@
+body {
+    background-color: rgb(119, 117, 116);
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrapper .head {
+    height: 10vh;
+    background-color: rgb(70, 70, 70);
+}
+
+.wrapper .content {
+    flex-grow: 1;
+    background-color: rgb(119, 117, 116);
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: -90vw;
+    width: 90vw;
+    height: 100vh;
+    background-color: #222;
+
+    transition: left 0.2s;
+    color: #eee;
+}
+.menu.open {
+    left: 0;
+}
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 5em 0 0 0;
+}
+.menu ul li {
+    padding: 2em;
+    font-size: 3em;
+    cursor: pointer;
+}
+.menu ul li:hover {
+    background-color: #333;
+}
