@@ -1,4 +1,36 @@
-window.onload = init;
+const HTML = {
+    trainingSelection: '<ul class="trainingSelection"><li>Training starten<ul class="trainings"></ul></li><li>Letztes Training: <label class="labelLastTraining"></label></li></ul>'
+};
+
+const Persistent = {
+    lastTraining: null,
+    load(){
+        let lt = Number(localStorage.getItem("lastTraining"));
+        if(lt) this.lastTraining = new Date(lt);
+    },
+    save(){
+        if(this.lastTraining) localStorage.setItem("lastTraining", this.lastTraining.getTime());
+    },
+    getLastTraining() {
+        return this.lastTraining;
+    },
+    setLastTraining(date){
+        this.lastTraining = date;
+    }
+}
+
+class Training {
+    constructor(name, exercises){
+        this.name = name;
+        this.exercises = exercises;
+    }
+}
+
+const TRAININGS = [
+    new Training("Pull", []),
+    new Training("Push", []),
+    new Training("Leg", [])
+];
 
 const Util = {
     clear(c){
@@ -38,6 +70,61 @@ const Menu = {
     }
 };
 
+class View {
+    constructor(title){
+        this.title = title;
+    }
+    onShown(){
+
+    }
+    onHidden(){
+
+    }
+    getHTML(){
+        let div = document.createElement("div");
+        div.textContent = "In Entwicklung!";
+        return div;
+    }
+}
+
+class ViewTraining extends View {
+    constructor(title){
+        super(title);
+        this.html = document.createElement("div");
+        this.html.className = "training";
+        this.html.innerHTML = HTML.trainingSelection;
+
+        let trainings = this.html.getElementsByClassName("trainings")[0];
+        for(let t of TRAININGS){
+            let e = document.createElement("li");
+            e.textContent = t.name;
+            trainings.appendChild(e);
+        }
+
+        this.labelLastTraining = this.html.getElementsByClassName("labelLastTraining")[0];
+    }
+    updateLastTraining(){
+        let lastTraining = Persistent.getLastTraining();
+        if(lastTraining) this.labelLastTraining.textContent = lastTraining.toLocaleDateString();
+        else labelLastTraining.textContent = "Keines";
+    }
+    onShown(){
+        this.updateLastTraining();
+    }
+    onHidden(){
+
+    }
+    getHTML(){
+        return this.html;
+    }
+}
+
+const Views = {
+    Home: new View("Home"),
+    Training: new ViewTraining("Training"),
+    Statistik: new View("Statistik")
+}
+
 const ViewPort = {
     htmlContent: null,
     htmlLabelHead: null,
@@ -58,46 +145,12 @@ const ViewPort = {
     }
 };
 
-class View {
-    constructor(title){
-        this.title = title
-    }
-    onShown(){
-
-    }
-    onHidden(){
-
-    }
-    getHTML(){
-        let div = document.createElement("div");
-        div.textContent = "In Entwicklung!";
-        return div;
-    }
-}
-
-class ViewTraining extends View {
-    onShown(){
-
-    }
-    onHidden(){
-
-    }
-    getHTML(){
-        let div = document.createElement("div");
-        div.textContent = "Training!";
-        return div;
-    }
-}
-
-const Views = {
-    Home: new View("Home"),
-    Training: new ViewTraining("Training"),
-    Statistik: new View("Statistik")
-}
-
 function init(){
+    Persistent.load();
+
     Menu.init();
     ViewPort.init();
 
     // ViewPort.showView(Views.Home);
 }
+window.onload = init;

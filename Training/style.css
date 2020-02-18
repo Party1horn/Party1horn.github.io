@@ -101,3 +101,32 @@ body {
     margin: 25px 0;
     text-align: center;
 }
+
+.exercise {
+    position: relative;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    padding: 50px;
+    font-size: 80px;
+    background-color: #555;
+    margin: 20px;
+    border-radius: 30px;
+}
+
+.exercise .status {
+    --size: 80px;
+
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+
+    border: 5px solid #ddd;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.exercise.done .status {
+    background-color: rgb(41, 189, 41);
+}
