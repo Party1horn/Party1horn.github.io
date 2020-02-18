@@ -9,7 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.wrapper {
+#wrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,25 +19,26 @@ body {
     height: 100vh;
 }
 
-.wrapper .head {
+#wrapper #head {
     position: relative;
     height: var(--headbar-height);
     background-color: rgb(70, 70, 70);
     font-size: calc(var(--headbar-height) - 90px);
 }
 
-.wrapper .content {
+#wrapper #content {
+    position: relative;
     flex-grow: 1;
     background-color: rgb(119, 117, 116);
 }
 
-.wrapper .head #menuBtn {
+#wrapper #head #menuBtn {
     display: inline-block;
     margin: 5px 15px;
     height: calc(100% - 10px);
 } 
 
-.wrapper .head #labelHead {
+#wrapper #head #labelHead {
     position: absolute;
     display: inline-block;
     margin: 25px 10px;
@@ -69,4 +70,34 @@ body {
 }
 #menu ul li:hover {
     background-color: #333;
+}
+
+.training .trainingSelection {
+    /*width: calc(100% - 60px);
+    font-size: 50px;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 30px;*/
+}
+
+.training .trainingSelection {
+    list-style: none;
+    padding: 0;
+    margin: 30px;
+    font-size: 60px;
+}
+
+.training .trainingSelection ul {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+.training .trainingSelection ul li {
+    display: block;
+    padding: 40px;
+    border-radius: 30px;
+    background-color: #ccc;
+    margin: 25px 0;
+    text-align: center;
 }
