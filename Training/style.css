@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(119, 117, 116);
+    background-color: rgb(70, 70, 70);
     overflow: hidden;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +16,7 @@ body {
 }
 
 .wrapper .head {
-    height: 10vh;
+    height: 8vh;
     background-color: rgb(70, 70, 70);
 }
 
