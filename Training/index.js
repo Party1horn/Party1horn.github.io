@@ -109,7 +109,7 @@ class ViewTraining extends View {
         else labelLastTraining.textContent = "Keines";
     }
     onShown(){
-        this.updateLastTraining();
+        //this.updateLastTraining();
     }
     onHidden(){
 
