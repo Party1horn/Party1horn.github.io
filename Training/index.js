@@ -1,16 +1,29 @@
 window.onload = init;
 
-function init(){
-    let menu = document.getElementsByClassName("menu")[0];
-    
-    var open = false;
-    setInterval(()=>{
-        if(!open) {
-            menu.classList.add("open");
-            open = true;
+const Menu = {
+    html: null,
+    htmlButton: null,
+    isOpen: false,
+
+    init(){
+        Menu.html = document.getElementById("menu");
+        Menu.htmlButton = document.getElementById("menuBtn");
+
+        Menu.htmlButton.onclick = Menu.toggleMenu;
+        Menu.html.onclick = Menu.toggleMenu;
+    },
+
+    toggleMenu() {
+        if(!Menu.open) {
+            Menu.html.classList.add("open");
+            Menu.open = true;
         } else {
-            menu.classList.remove("open");
-            open = false;
+            Menu.html.classList.remove("open");
+            Menu.open = false;
         }
-    }, 1000);
+    }
+};
+
+function init(){
+    Menu.init();
 }

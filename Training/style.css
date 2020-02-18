@@ -1,3 +1,7 @@
+* {
+    --headbar-height: 8vh;
+}
+
 body {
     background-color: rgb(70, 70, 70);
     overflow: hidden;
@@ -16,8 +20,10 @@ body {
 }
 
 .wrapper .head {
-    height: 8vh;
+    position: relative;
+    height: var(--headbar-height);
     background-color: rgb(70, 70, 70);
+    font-size: calc(var(--headbar-height) - 90px);
 }
 
 .wrapper .content {
@@ -25,7 +31,19 @@ body {
     background-color: rgb(119, 117, 116);
 }
 
-.menu {
+.wrapper .head #menuBtn {
+    display: inline-block;
+    margin: 5px 15px;
+    height: calc(100% - 10px);
+} 
+
+.wrapper .head #labelHead {
+    position: absolute;
+    display: inline-block;
+    margin: 25px 10px;
+}
+
+#menu {
     position: absolute;
     top: 0;
     left: -90vw;
@@ -36,19 +54,19 @@ body {
     transition: left 0.2s;
     color: #eee;
 }
-.menu.open {
+#menu.open {
     left: 0;
 }
-.menu ul {
+#menu ul {
     list-style: none;
     padding: 0;
     margin: 5em 0 0 0;
 }
-.menu ul li {
+#menu ul li {
     padding: 2em;
     font-size: 3em;
     cursor: pointer;
 }
-.menu ul li:hover {
+#menu ul li:hover {
     background-color: #333;
 }
