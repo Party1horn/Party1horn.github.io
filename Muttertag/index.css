@@ -44,7 +44,7 @@ body {
     height: relative;
     margin: 0px 0px;
 
-    border-style: ;
+    border-style: groove;
     border-width: 1cm;
     border-color: rgb(116, 86, 62);
 }
