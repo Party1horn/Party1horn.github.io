@@ -36,11 +36,17 @@ body {
 }
 
 #picture {
-    position: absolute;
+    position: relative;
     top: 100;
     left: 100;
     display: flex;
     flex-direction: column;
     width: 25 vw;
     height: relative;
+}
+
+.flex { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
