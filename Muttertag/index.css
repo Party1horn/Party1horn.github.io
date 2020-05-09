@@ -35,18 +35,13 @@ body {
     margin: 12.5px 50px;
 }
 
+
 #picture {
-    position: relative;
-    top: 100;
-    left: 100;
+    position: absolute;
+    top: 100px;
+    left: 100px;
     display: flex;
     flex-direction: column;
     width: 25 vw;
     height: relative;
-}
-
-.flex { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
 }
