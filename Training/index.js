@@ -27,8 +27,8 @@ class Training {
 }
 
 const TRAININGS = [
-    new Training("Pull", []),
     new Training("Push", []),
+    new Training("Pull", []),
     new Training("Leg", [])
 ];
 
