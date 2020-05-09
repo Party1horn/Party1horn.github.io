@@ -44,4 +44,8 @@ body {
     flex-direction: column;
     width: 25 vw;
     height: relative;
+    margin-left: -125px;
+    margin-top: -125px;
+    border: 0.5cm;
+    border-color: rgb(116, 86, 62);
 }
