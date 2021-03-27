@@ -28,6 +28,7 @@ body {
 
 #wrapper #content {
     position: relative;
+    overflow-y: scroll;
     flex-grow: 1;
     background-color: rgb(119, 117, 116);
 }
